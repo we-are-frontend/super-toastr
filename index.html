@@ -1,43 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html style="width: 100%; height: 100%; margin: 0; padding: 0;">
 <head>
-    <script type="text/javascript" src="./super-toaster.js"></script>
+    <script type="text/javascript" src="./super-toastr.js"></script>
 </head>
-<body>
+<body style="width: 100%; height: 100%; margin: 0; padding: 0;">
+    <div style="background: #d1d1d1; width: 100%; height: 100%;">
+        <!-- demo -->
+        <div>
+            <button style="width: 160px;" onClick="addToastWarning()">
+                add toast Warning
+            </button>
+            
+            <button style="width: 160px;"onClick="addToastSuccess()">
+                add toast Success
+            </button>
+            
+            <button style="width: 160px;" onClick="addToastError()">
+                add toast Error
+            </button>
+        </div>
 
+        <div>
+            <button onClick="nextToast()">
+                next Toast
+            </button>
+            <button onClick="previousToast()">
+                previous Toast
+            </button>
+        </div>
+        
+        <span>current toast ID: currentToastID</span>
+        -----------------
+        <span> nb erros: total.errors </span>
+        <span> nb success: total.success</span>
+        <span> nb warnings: total.warnings </span>
+    </div>
     <div id="toasts-container"
     style="z-index: 1; pointer-events: none; display: flex; position: absolute; top: 0; width: 100%; height: 100%;">
     </div>
-
-    <!-- demo -->
-    <div>
-        <button style="width: 160px;" onClick="addToastWarning()">
-            add toast Warning
-        </button>
-        
-        <button style="width: 160px;"onClick="addToastSuccess()">
-            add toast Success
-        </button>
-        
-        <button style="width: 160px;" onClick="addToastError()">
-            add toast Error
-        </button>
-    </div>
-
-    <div>
-        <button onClick="nextToast()">
-            next Toast
-        </button>
-        <button onClick="previousToast()">
-            previous Toast
-        </button>
-    </div>
-      
-    <span>current toast ID: currentToastID</span>
-    -----------------
-    <span> nb erros: total.errors </span>
-    <span> nb success: total.success</span>
-    <span> nb warnings: total.warnings </span>
       
 </body>
 </html>
