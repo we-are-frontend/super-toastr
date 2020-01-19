@@ -1,3 +1,9 @@
+:root {
+    --main-bg-color: #26a69a;
+    --main-text-color: #fff;
+    --red-light: #E57373;
+}
+
 .demo {
     background: white;
     width: 100%;
@@ -27,4 +33,25 @@
 
 .actions {
     border: 1px solid green;
+}
+
+.red-light{
+    background-color: var(--red-light);;
+}
+
+.btn {
+    text-decoration: none;
+    color: var(--main-text-color);
+    background-color: var(--main-bg-color);
+    text-align: center;
+    letter-spacing: .5px;
+    font-size: 14px;
+    outline: 0;
+    border: none;
+    border-radius: 2px;
+    height: 36px;
+    line-height: 36px;
+    text-transform: uppercase;
+    padding: 0 16px;
+    box-shadow: 0 2px 2px 0;
 }
