@@ -96,26 +96,26 @@ var waf = {
                 Xnode.addEventListener('click', function() {
                     const currentDisplayedNode = document.getElementById(__id + '');
             
-                    const currentToastIndex = self.toastIds.findIndex(
+                    const currentToastIndex = toastIds.findIndex(
                     (element) => {
-                        return element === self.currentToastID;
+                        return element === currentToastID;
                     }
                     ); 
             
                     if (currentToastIndex > 0) {
-                        self.currentToastID = self.toastIds[currentToastIndex - 1];
-                    } else if (self.toastIds.length > 1) {
-                        self.currentToastID = self.toastIds[currentToastIndex + 1];
+                        currentToastID = toastIds[currentToastIndex - 1];
+                    } else if (toastIds.length > 1) {
+                        currentToastID = toastIds[currentToastIndex + 1];
                     } else {
-                        self.currentToastID = null;
+                        currentToastID = null;
                     }
             
-                    if (self.currentToastID) {
-                        const newNodeToastToRender = document.getElementById(self.currentToastID + '');
+                    if (currentToastID) {
+                        const newNodeToastToRender = document.getElementById(currentToastID + '');
                         newNodeToastToRender.style.zIndex = '102';
                     }
             
-                    self.toastIds = self.toastIds.filter(toastId => toastId !== __id);
+                    toastIds = toastIds.filter(toastId => toastId !== __id);
                     currentDisplayedNode.style.display = 'none';
             
                     self.updateTotalsPerType();
@@ -165,4 +165,3 @@ var waf = {
         return self;
     }
 }
-
