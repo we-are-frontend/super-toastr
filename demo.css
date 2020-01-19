@@ -1,0 +1,30 @@
+.demo {
+    background: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    height: 500px;
+    padding: 0 80px;
+    background: #d1d1d1;
+}
+
+.config {
+    border: 1px solid red;
+    flex: 1;
+}
+
+.content {
+    color: black;
+}
+
+
+.actions {
+    border: 1px solid green;
+}
