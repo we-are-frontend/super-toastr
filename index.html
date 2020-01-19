@@ -3,28 +3,31 @@
 <head>
     <script type="text/javascript" src="./super-toastr.js"></script>
 </head>
+<script>
+    var instanceA = waf.superToastr('A1');
+</script>
 <body style="width: 100%; height: 100%; margin: 0; padding: 0;">
     <div style="background: #d1d1d1; width: 100%; height: 100%;">
         <!-- demo -->
         <div>
-            <button style="width: 160px;" onClick="addToastWarning()">
+            <button style="width: 160px;" onClick="instanceA.addToastWarning()">
                 add toast Warning
             </button>
             
-            <button style="width: 160px;"onClick="addToastSuccess()">
+            <button style="width: 160px;"onClick="instanceA.addToastSuccess()">
                 add toast Success
             </button>
             
-            <button style="width: 160px;" onClick="addToastError()">
+            <button style="width: 160px;" onClick="instanceA.addToastError()">
                 add toast Error
             </button>
         </div>
 
         <div>
-            <button onClick="nextToast()">
+            <button onClick="instanceA.nextToast()">
                 next Toast
             </button>
-            <button onClick="previousToast()">
+            <button onClick="instanceA.previousToast()">
                 previous Toast
             </button>
         </div>
