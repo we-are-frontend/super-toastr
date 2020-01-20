@@ -2,6 +2,9 @@
     --main-bg-color: #26a69a;
     --main-text-color: #fff;
     --red-light: #E57373;
+    --red: #F44336;
+    --grey-light: #f5f5f5;
+    --border-grey:#e3e3e3;
 }
 
 .demo {
@@ -17,8 +20,10 @@
     flex-direction: column;
     border-radius: 15px;
     height: 500px;
-    padding: 0 80px;
-    background: #d1d1d1;
+    padding: 20px;
+    background: var(--grey-light);
+    border: 1px solid var(--border-grey);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.0500);
 }
 
 .config {
@@ -54,4 +59,12 @@
     text-transform: uppercase;
     padding: 0 16px;
     box-shadow: 0 2px 2px 0;
+}
+
+.s-toast {
+
+}
+
+.s-toast-success {
+    background-color: var(--main-bg-color);
 }

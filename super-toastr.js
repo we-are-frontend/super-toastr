@@ -20,7 +20,9 @@ var waf = {
         
             toastElement.style.position = 'absolute'; 
             toastElement.style.background = config.background || 'white'; 
-            toastElement.style.border = '1px solid black'; 
+            //toastElement.style.border = '1px solid black';
+            toastElement.style.borderRadius = '5px';
+            toastElement.style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2)';
             toastElement.style.padding = '20px'; 
             toastElement.style.setProperty("-webkit-transition", "top 5s linear");
             toastElement.style.right = '0';   
@@ -49,7 +51,8 @@ var waf = {
             closeElement.style.cursor = 'pointer';
             closeElement.style.pointerEvents = 'auto';
             closeElement.style.position = 'absolute';
-            closeElement.style.background = 'white'; 
+            //closeElement.style.background = 'white';
+            closeElement.style.color = 'white'; 
             closeElement.style.zIndex = '102';
             closeElement.style.top = '0';
             closeElement.style.right = '0';
