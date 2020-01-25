@@ -1,7 +1,7 @@
 var path = require('path');
  var webpack = require('webpack');
  module.exports = {
-     entry: ['./super-toastr.js'],
+     entry: ['@babel/polyfill', './super-toastr.js'],
      output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'super-toastr.bundle.js',

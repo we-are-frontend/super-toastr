@@ -136,7 +136,6 @@ var superToastr = (toaster_id_) => {
         nextElement.style.paddingLeft = '10px';
         nextElement.style.cursor = 'pointer';
         nextElement.addEventListener('click', function() {
-            console.log('next toast');
             self.nextToast();
         }, false);
 
