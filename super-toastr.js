@@ -21,6 +21,18 @@ var waf = {
             bottom_center: 'bottom_center'
         };
 
+        function updateCounter() {
+            toastIds.forEach(toastId => {
+                const toastIndexElement = document.getElementById(toastId + '_current-index');
+                const currentToastIndex = toastIds.findIndex(
+                    (element) => {
+                    return element === toastId;
+                    }
+                );
+                toastIndexElement.textContent = (currentToastIndex + 1) + ' / ' + toastIds.length;
+            })
+        }
+
         function getTranslation(position, toastElement) {
             let translate = {};
             if (position === positions.top_right) {
@@ -96,13 +108,50 @@ var waf = {
             toastElement.innerHTML = content;
         };
 
+        let addNextPrevious = (toastElement) => {
+            var footerElement = document.createElement('div'); 
+            footerElement.style.display = 'flex'; 
+            footerElement.style.padding = '5px 0 0 0';
+
+            // PREVIOUS
+            var previousElement = document.createElement('div'); 
+            previousElement.innerHTML = '<'; 
+            previousElement.style.pointerEvents = 'auto';
+            previousElement.style.paddingRight = '10px';
+            previousElement.style.cursor = 'pointer';
+            previousElement.addEventListener('click', function() {
+                self.previousToast();
+            }, false);
+
+            footerElement.appendChild(previousElement); 
+
+            // COUNTER
+            var counterElement = document.createElement('div');
+            counterElement.id = toastElement.id + '_current-index';
+            footerElement.appendChild(counterElement); 
+
+            // NEXT
+            var nextElement = document.createElement('div'); 
+            nextElement.innerHTML = '>'; 
+            nextElement.style.pointerEvents = 'auto';
+            nextElement.style.paddingLeft = '10px';
+            nextElement.style.cursor = 'pointer';
+            nextElement.addEventListener('click', function() {
+                console.log('next toast');
+                self.nextToast();
+            }, false);
+
+            footerElement.appendChild(nextElement); 
+
+            toastElement.appendChild(footerElement); 
+        }
+
         let addCloseBtn = (toastElement, toast_id_) => {
             var closeElement = document.createElement('div');  
             closeElement.textContent = 'X';
             closeElement.style.cursor = 'pointer';
             closeElement.style.pointerEvents = 'auto';
             closeElement.style.position = 'absolute';
-            //closeElement.style.background = 'white';
             closeElement.style.color = 'black'; 
             closeElement.style.zIndex = '102';
             closeElement.style.top = '0';
@@ -111,9 +160,9 @@ var waf = {
 
             closeElement.addEventListener('click', function() {
                 const currentToastIndex = toastIds.findIndex(
-                (element) => {
-                    return element === currentToastID;
-                }
+                    (element) => {
+                        return element === currentToastID;
+                    }
                 ); 
         
                 if (currentToastIndex > 0) {
@@ -131,8 +180,8 @@ var waf = {
         
                 toastIds = toastIds.filter(toastId => toastId !== toast_id_);
                 toastElement.style.display = 'none';
-        
-                self.updateTotalsPerType();
+
+                updateCounter();
             }, false);
             toastElement.appendChild(closeElement); 
         };
@@ -146,34 +195,16 @@ var waf = {
 
                 addContent(toastElement, config.content || '');
 
+                addNextPrevious(toastElement);
+
                 if (config.closeBtn) {
                     addCloseBtn(toastElement, __toast_id);  
                 }
                 
                 document.getElementById('toasts-container').appendChild(toastElement);
+
+                updateCounter();
             },
-            
-            /*
-            updateTotalsPerType: () => {
-                total = {
-                    errors: 0,
-                    warnings: 0,
-                    success: 0
-                }
-            
-                toastIds.forEach(toastId => {
-                    if (toastId.includes('ERR#')) {
-                        total.errors++;
-                    }
-                    if (toastId.includes('SUC#')) {
-                        total.success++;
-                    }
-                    if (toastId.includes('WAR#')) {
-                        total.warnings++;
-                    }
-                });
-            },
-            */
 
             nextToast: () => {
                 console.log(' nextToast currentToastID: ', currentToastID);
