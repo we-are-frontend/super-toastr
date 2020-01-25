@@ -27,17 +27,20 @@
 }
 
 .config {
+    display: flex;
     border: 1px solid red;
     flex: 1;
+    min-width: 800px;
 }
 
 .content {
     color: black;
+    width: 100%;
 }
-
 
 .actions {
     border: 1px solid green;
+    padding: 10px;
 }
 
 .red-light{
@@ -59,10 +62,6 @@
     text-transform: uppercase;
     padding: 0 16px;
     box-shadow: 0 2px 2px 0;
-}
-
-.s-toast {
-
 }
 
 .s-toast-success {
