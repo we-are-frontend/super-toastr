@@ -1,50 +1,15 @@
 <!DOCTYPE html>
 <html style="width: 100%; height: 100%; margin: 0;">
 <head>
-    <script type="text/javascript" src="./super-toastr.js"></script>
+    <script type="text/javascript" src="./build/super-toastr.bundle.js"></script>
 
     <link rel="stylesheet" type="text/css" href="demo.css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 
 <body class="container">
-    
-    
-<script>
-    var instanceA = waf.superToastr('instanceA');
-    var toastConfig = {};
-
-    function getBackgroundForType(type) {
-        if (type === 'WAR') {
-            return 'yellow';
-        }
-        if (type === 'ERR') {
-            return '#F44336';
-        }
-        if (type === 'SUC') {
-            return '#26a69a';
-        }
-        if (type === 'INF') {
-            return '#dbdbdb';
-        }
-        return '';
-    }
-
-    function addToast() {
-        const toastContent = document.querySelector('textarea[name="toast-content"]').value;
-        const toastType = document.querySelector('input[name="toast-type"]:checked').value;
-        const toastPosition = document.querySelector('input[name="toast-position"]:checked').value;
-        var toastConfig = {
-            type: toastType,
-            position: toastPosition,
-            background: getBackgroundForType(toastType),
-            content: toastContent,
-            closeBtn: true
-        };
-        instanceA.addToast(toastConfig);
-    }
-</script>
 
 <section id="demo" class="well">
     <h1>SuperToastr</h1>
@@ -93,25 +58,6 @@
             </button>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col p-1">
-            <button class="btn" onClick="instanceA.nextToast()">
-                next Toast
-            </button>
-            <button class="btn" onClick="instanceA.previousToast()">
-                previous Toast
-            </button>
-        </div>
-    </div>
-    
-    <!--
-    <span>current toast ID: currentToastID</span>
-    -----------------
-    <span> nb erros: total.errors </span>
-    <span> nb success: total.success</span>
-    <span> nb warnings: total.warnings </span>
-    -->
 </section>
 
     <div id="toasts-container"
@@ -119,5 +65,41 @@
     </div>
 
 </body>
+
+<script>
+    var instanceA = SuperToastrLib.createToaster('instanceA');
+    var toastConfig = {};
+
+    function getBackgroundForType(type) {
+        if (type === 'WAR') {
+            return 'yellow';
+        }
+        if (type === 'ERR') {
+            return '#F44336';
+        }
+        if (type === 'SUC') {
+            return '#26a69a';
+        }
+        if (type === 'INF') {
+            return '#dbdbdb';
+        }
+        return '';
+    }
+
+    function addToast() {
+        console.log('test');
+        const toastContent = document.querySelector('textarea[name="toast-content"]').value;
+        const toastType = document.querySelector('input[name="toast-type"]:checked').value;
+        const toastPosition = document.querySelector('input[name="toast-position"]:checked').value;
+        var toastConfig = {
+            type: toastType,
+            position: toastPosition,
+            background: getBackgroundForType(toastType),
+            content: toastContent,
+            closeBtn: true
+        };
+        instanceA.addToast(toastConfig);
+    }
+</script>
 
 </html>

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "webpack": "webpack --mode development",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -16,8 +17,14 @@
     "url": "https://github.com/we-are-frontend/super-toastr/issues"
   },
   "homepage": "https://github.com/we-are-frontend/super-toastr#readme",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
-    "live-server": "^1.2.1"
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   }
 }
