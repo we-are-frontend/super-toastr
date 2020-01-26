@@ -97,7 +97,7 @@ var superToastr = (toaster_id_) => {
                 { transform: 'none' }, 
                 { transform: translate }
             ], { 
-            duration: 1000,
+            duration: 500,
             iterations: '1',
             fill: 'forwards'            
         });
