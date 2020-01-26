@@ -51,8 +51,9 @@ class SuperToastr {
       this.currentToastID = this.toastIds[currentToastIndex + 1];
       const newNodeToastToRender = document.getElementById(this.currentToastID + "");
 
-      currentDisplayedNode.style.zIndex = "100";
+      currentDisplayedNode.style.display = 'none';
       newNodeToastToRender.style.zIndex = "102";
+      newNodeToastToRender.style.display = 'block';
     }
 
     console.log(" nextToast END currentToastID: ", this.currentToastID);
@@ -70,8 +71,9 @@ class SuperToastr {
       this.currentToastID = this.toastIds[currentToastIndex - 1];
       const newNodeToastToRender = document.getElementById(this.currentToastID + "");
 
-      currentDisplayedNode.style.zIndex = "100";
+      currentDisplayedNode.style.display = 'none';
       newNodeToastToRender.style.zIndex = "102";
+      newNodeToastToRender.style.display = 'block';
     }
 
     console.log(" previousToast END currentToastID: ", this.currentToastID);
@@ -127,6 +129,8 @@ class SuperToastr {
   createToastContainer(toast_id, config) {
     let toastElement = document.createElement("DIV");
 
+    const cacheID = this.currentToastID;
+
     toastElement.id = toast_id;
     this.toastIds.push(toast_id);
     this.currentToastID = toast_id;
@@ -145,7 +149,7 @@ class SuperToastr {
 
     // Animation to move div
     let translate = this.getTranslation(config.position, toastElement);
-    toastElement.animate(
+    const res = toastElement.animate(
       [
         // keyframes
         { transform: "none" },
@@ -158,6 +162,13 @@ class SuperToastr {
       }
     );
 
+    res.addEventListener('finish', () => {
+      if (cacheID) {
+          const oldToast = document.getElementById(cacheID + '');
+          oldToast.style.display = 'none';
+      }
+    }, false);
+
     return toastElement;
   }
 
@@ -168,11 +179,14 @@ class SuperToastr {
   addNextPrevious(toastElement) {
     let footerElement = document.createElement("div");
     footerElement.style.display = "flex";
+    footerElement.style.flexDirection = 'row';
+    footerElement.style.justifyContent = 'space-between';
     footerElement.style.padding = "5px 0 0 0";
 
     // PREVIOUS
     let previousElement = document.createElement("div");
-    previousElement.innerHTML = "<";
+    previousElement.id = 'previous-arrow';
+    previousElement.style.userSelect = 'none';
     previousElement.style.pointerEvents = "auto";
     previousElement.style.paddingRight = "10px";
     previousElement.style.cursor = "pointer";
@@ -189,11 +203,14 @@ class SuperToastr {
     // COUNTER
     let counterElement = document.createElement("div");
     counterElement.id = toastElement.id + "_current-index";
+    counterElement.style.userSelect = 'none';
+    counterElement.style.fontWeight = '500';
     footerElement.appendChild(counterElement);
 
     // NEXT
     let nextElement = document.createElement("div");
-    nextElement.innerHTML = ">";
+    nextElement.id = 'next-arrow';
+    nextElement.style.userSelect = 'none';
     nextElement.style.pointerEvents = "auto";
     nextElement.style.paddingLeft = "10px";
     nextElement.style.cursor = "pointer";
@@ -213,6 +230,7 @@ class SuperToastr {
   addCloseBtn(toastElement, toast_id_) {
     let closeElement = document.createElement("div");
     closeElement.textContent = "X";
+    closeElement.style.userSelect = 'none';
     closeElement.style.cursor = "pointer";
     closeElement.style.pointerEvents = "auto";
     closeElement.style.position = "absolute";
@@ -242,6 +260,7 @@ class SuperToastr {
             this.currentToastID + ""
           );
           newNodeToastToRender.style.zIndex = "102";
+          newNodeToastToRender.style.display = 'block';
         }
 
         this.toastIds = this.toastIds.filter(toastId => toastId !== toast_id_);
