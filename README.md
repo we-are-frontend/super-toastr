@@ -5,5 +5,6 @@ https://we-are-frontend.github.io/super-toastr/
 
 ## Local Dev
 ```
-yarn start
+1. yarn run webpack 
+2. yarn start
 ```
