@@ -10325,7 +10325,7 @@ var superToastr = function superToastr(toaster_id_) {
       toastElement.style.bottom = '0';
       toastElement.style.left = '0';
       toastElement.style.right = '0';
-      toastElement.style.margin = '0 auto';
+      toastElement.style.margin = '0px auto';
       translate = 'translate(0, -100px)';
     }
 
@@ -10339,24 +10339,25 @@ var superToastr = function superToastr(toaster_id_) {
     currentToastID = toast_id;
     counter++;
     toastElement.style.position = 'absolute';
-    toastElement.style.background = config.background || 'white'; //toastElement.style.border = '1px solid black';
-
+    toastElement.style.background = config.background || 'white';
     toastElement.style.borderRadius = '5px';
     toastElement.style.boxShadow = '0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2)';
     toastElement.style.padding = '20px';
-    toastElement.style.setProperty("-webkit-transition", "top 5s linear");
     toastElement.style.zIndex = '102';
     toastElement.style.maxWidth = '250px';
     toastElement.style.minWidth = config.minWidth || '250px';
-    toastElement.style.margin = '10px';
+    toastElement.style.margin = '0'; // Animation to move div
+
     var translate = getTranslation(config.position, toastElement);
-    var res = toastElement.animate([{
-      transform: 'translate(0)'
+    toastElement.animate([// keyframes
+    {
+      transform: 'none'
     }, {
       transform: translate
-    }], 500);
-    res.addEventListener('finish', function () {
-      toastElement.style.transform = translate;
+    }], {
+      duration: 1000,
+      iterations: '1',
+      fill: 'forwards'
     });
     return toastElement;
   };
