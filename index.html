@@ -52,8 +52,21 @@
 
         <div class="row">
             <div class="col p-1">
+                <h3>All toast IDs</h3>
+                <div id="all-taost-ids">
+
+                </div>
+
+                <h3>Add toast</h3>
                 <button class="btn" onClick="addToast()">
                     add toast
+                </button>
+                <br />
+                <br />
+                <h3>Remove toast by ID</h3>
+                <input type="text" name="to-remove-toast-id" />
+                <button class="btn" onClick="removeToastById()">
+                    remove toast by ID
                 </button>
             </div>
         </div>
@@ -65,6 +78,10 @@
 
 <script>
     var instanceA = SuperToastrLib.createToaster('instanceA');
+
+    function printIdsToDom(ids) {
+        document.getElementById('all-taost-ids').innerHTML = '[ ' +  ids + ' ]';;
+    }
 
     function getBackgroundForType(type) {
         if (type === 'WAR') {
@@ -82,6 +99,11 @@
         return '';
     }
 
+    function prettyDate2(date){
+        var localeSpecificTime = date.toLocaleTimeString();
+        return localeSpecificTime;
+    }
+
     function addToast() {
         const toastContent = document.querySelector('textarea[name="toast-content"]').value;
         const toastType = document.querySelector('input[name="toast-type"]:checked').value;
@@ -90,10 +112,19 @@
             type: toastType,
             position: toastPosition,
             background: getBackgroundForType(toastType),
-            content: toastContent,
+            content: prettyDate2(new Date()) + ' ' + toastContent,
             closeBtn: true
         };
-        instanceA.addToast(toastConfig);
+        const addedToastID = instanceA.addToast(toastConfig);
+        console.log(instanceA.getAllToastIds());
+        printIdsToDom(instanceA.getAllToastIds());
+        console.log('addedToastID', addedToastID);
+    }
+
+    function removeToastById() {
+        const toRemoveToastId = document.querySelector('input[name="to-remove-toast-id"]').value;
+        instanceA.removeToastById(toRemoveToastId);
+        printIdsToDom(instanceA.getAllToastIds());
     }
 </script>
 

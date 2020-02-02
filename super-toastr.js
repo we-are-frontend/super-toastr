@@ -22,6 +22,17 @@ class SuperToastr {
     };
   }
 
+  removeToastById(id) {
+    const oldToast = document.getElementById(id + '');
+    oldToast.remove();
+    const r = this.toastIds.filter(item => {
+      return item != id;
+    })
+    this.toastIds = r;
+
+    this.updateCounter();
+  }
+
   addToast(config = {}) {
     const __toast_id = config.type + "#" + this.counter;
 
@@ -31,17 +42,18 @@ class SuperToastr {
 
     this.addNextPrevious(toastElement);
 
-    if (config.closeBtn) {
-      this.addCloseBtn(toastElement, __toast_id);
+    if (config.removeBtn) {
+      this.addRemoveBtn(toastElement, __toast_id);
     }
 
     document.getElementById("toasts-container").appendChild(toastElement);
 
     this.updateCounter();
+
+    return __toast_id;
   }
 
   nextToast() {
-    console.log(" nextToast currentToastID: ", this.currentToastID);
     const currentToastIndex = this.toastIds.findIndex(element => {
       return element === this.currentToastID;
     });
@@ -55,13 +67,9 @@ class SuperToastr {
       newNodeToastToRender.style.zIndex = "102";
       newNodeToastToRender.style.display = 'block';
     }
-
-    console.log(" nextToast END currentToastID: ", this.currentToastID);
-    console.log("toastIds", this.toastIds);
   }
 
   previousToast() {
-    console.log(" previousToast currentToastID: ", this.currentToastID);
     const currentToastIndex = this.toastIds.findIndex(element => {
       return element === this.currentToastID;
     });
@@ -75,8 +83,6 @@ class SuperToastr {
       newNodeToastToRender.style.zIndex = "102";
       newNodeToastToRender.style.display = 'block';
     }
-
-    console.log(" previousToast END currentToastID: ", this.currentToastID);
   }
 
   updateCounter() {
@@ -263,14 +269,15 @@ class SuperToastr {
           newNodeToastToRender.style.display = 'block';
         }
 
-        this.toastIds = this.toastIds.filter(toastId => toastId !== toast_id_);
-        toastElement.style.display = "none";
-
-        this.updateCounter();
+        this.removeToastById(toast_id_);
       },
       false
     );
     toastElement.appendChild(closeElement);
+  }
+
+  getAllToastIds() {
+    return [...[], this.toastIds];
   }
 }
 
