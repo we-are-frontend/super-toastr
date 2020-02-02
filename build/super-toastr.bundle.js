@@ -10313,8 +10313,8 @@ function () {
       this.addContent(toastElement, config.content || "");
       this.addNextPrevious(toastElement);
 
-      if (config.removeBtn) {
-        this.addRemoveBtn(toastElement, __toast_id);
+      if (config.closeBtn) {
+        this.addCloseBtn(toastElement, __toast_id);
       }
 
       document.getElementById("toasts-container").appendChild(toastElement);
