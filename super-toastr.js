@@ -22,6 +22,14 @@ class SuperToastr {
     };
   }
 
+  removeAllToasts() {
+    this.toastIds.forEach(toastId => {
+      const toastElement = document.getElementById(toastId + '');
+      toastElement.remove();
+    });
+    this.toastIds = [];
+  }
+
   removeToastById(toastIdToRemove) {
     const oldToast = document.getElementById(toastIdToRemove + '');
     if (oldToast) {

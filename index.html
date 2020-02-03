@@ -74,6 +74,12 @@
                     <button type="submit" class="btn remove-btn" onClick="removeToastById()">remove</button>
                 </div>
             </div>
+
+            <div class="col-12 col-lg-3 pb-3">
+                <div class="flex-container">
+                    <button type="submit" class="btn remove-all-btn" onClick="removeAllToasts()">Remove All Toasts</button>
+                </div>
+            </div>
         </div>
 
         <div class="row">
@@ -140,6 +146,10 @@
 
         document.getElementById('st-current-toast-id').innerHTML = '';
         document.getElementById('st-json-config').innerHTML = '';
+    }
+
+    function removeAllToasts() {
+        instanceA.removeAllToasts();
     }
 </script>
 

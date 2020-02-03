@@ -10292,6 +10292,15 @@ function () {
   }
 
   _createClass(SuperToastr, [{
+    key: "removeAllToasts",
+    value: function removeAllToasts() {
+      this.toastIds.forEach(function (toastId) {
+        var toastElement = document.getElementById(toastId + '');
+        toastElement.remove();
+      });
+      this.toastIds = [];
+    }
+  }, {
     key: "removeToastById",
     value: function removeToastById(toastIdToRemove) {
       var oldToast = document.getElementById(toastIdToRemove + '');
