@@ -10,36 +10,36 @@
 </head>
 
 <body class="container">
+    <h1>Super toastr Demo</h1>
     <section id="demo" class="well">
-        <h1>SuperToastr</h1>
         <div class="row">
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-3">
                 <div class="form-group">
-                    <label for="content">Toast Content</label>
-                    <textarea id="content" rows="8" name="toast-content" placeholder="Enter simple text or html">
-                        <div style="color: darkblue; font-weight: bold; padding-bottom: 5px;">
-                            Toast Title
-                        </div>
-                        <div style="color: darkblue;">
-                            One toastr to rule them all
-                        </div>
-                    </textarea>
+                    <label for="st-content">Content</label>
+                    <textarea type="text" id="st-content" name="st-content" rows="8" placeholder="Enter a content..." style="width: 100%;"><div style="color: darkblue; font-weight: bold; padding-bottom: 5px;">Toast Title</div><div style="color: darkblue;">One toastr to rule them all</div></textarea>
                 </div>
             </div>
-            <div class="col-12 col-lg-6">
-                <div class="toast-types" class="form-group">
-                    <div><b>Toast Type</b></div>
-                    <input type="radio" name="toast-type" value="SUC" checked>  success <br>
-                    <input type="radio" name="toast-type" value="ERR"> error <br>
-                    <input type="radio" name="toast-type" value="WAR"> warning <br>  
-                    <input type="radio" name="toast-type" value="INF"> info <br>  
+            <div class="col-12 col-lg-3">
+                <div class="form-group">
+                    <input type="checkbox" id="st-close-btn" name="st-close-btn" /> Close button
                 </div>
-                <div class="toast-positions" class="form-group">
-                    <div><b>Position</b></div>
-                    <input type="radio" name="toast-position" value="top_right" checked>  Top Right <br>
-                    <input type="radio" name="toast-position" value="bottom_right"> Bottom Right <br>
-                    <input type="radio" name="toast-position" value="bottom_left"> Bottom Left <br>  
-                    <input type="radio" name="toast-position" value="top_left"> Top Left <br>  
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="form-group st-types">
+                    <label for="st-type">Toast type</label>
+                    <input type="radio" name="st-type" value="SUC" checked>  success <br>
+                    <input type="radio" name="st-type" value="ERR"> error <br>
+                    <input type="radio" name="st-type" value="WAR"> warning <br>  
+                    <input type="radio" name="st-type" value="INF"> info <br>  
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="st-positions form-group">
+                    <label for="st-type">Position</label>
+                    <input type="radio" name="st-position" value="top_right" checked>  Top Right <br>
+                    <input type="radio" name="st-position" value="bottom_right"> Bottom Right <br>
+                    <input type="radio" name="st-position" value="bottom_left"> Bottom Left <br>  
+                    <input type="radio" name="st-position" value="top_left"> Top Left <br>  
                     <!--
                     <input type="radio" name="toast-position" value="top_full_width "> Top Full Width <br> 
                     <input type="radio" name="toast-position" value="bottom_full_width"> Bottom Full Width <br> 
@@ -50,34 +50,42 @@
             </div>
         </div>
 
+        <br />
+    </section>
+
+    <br />
+
+    <section id="demo" class="well">
         <div class="row">
-            <div class="col p-1">
+                <!--
                 <h3>All toast IDs</h3>
                 <div id="all-taost-ids">
                 </div>
-
-                <h3>Add toast</h3>
+            -->
+            <div class="col-12 col-lg-3 pb-3">
                 <button class="btn" onClick="addToast()">
                     add toast
                 </button>
-                <br />
-                <br />
-                <h3>Remove toast by ID</h3>
-                <input type="text" name="to-remove-toast-id" />
-                <button class="btn" onClick="removeToastById()">
-                    remove toast by ID
-                </button>
+            </div>
+
+            <div class="col-3 col-lg-3 pb-3">
+                <div class="flex-container">
+                    <input type="text" name='st-to-remove-toast-id' class="input-field" placeholder="Enter toast id to remove">
+                    <button type="submit" class="btn remove-btn" onClick="removeToastById()">remove</button>
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col p-1" style="border: 1px solid #d1d1d1">
-                <pre id="json-config">
+            <div class="col p-3" style="border: 1px solid #d1d1d1">
+                <pre id="st-current-toast-id" style="padding: 5px 10px; font-size: 18px; font-weight: bold;">
+                </pre>
+                <pre id="st-json-config" style="padding: 5px 10px;">
                 </pre>
             </div>
         </div>
     </section>
-
+    
     <div id="toasts-container" style="z-index: 999999; pointer-events: none; display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%;">
     </div>
 </body>
@@ -108,31 +116,30 @@
     }
 
     function addToast() {
-        const toastContent = document.querySelector('textarea[name="toast-content"]').value;
-        const toastType = document.querySelector('input[name="toast-type"]:checked').value;
-        const toastPosition = document.querySelector('input[name="toast-position"]:checked').value;
+        const toastContentElement = document.querySelector('textarea[name="st-content"]');
+        const toastType = document.querySelector('input[name="st-type"]:checked').value;
+        const toastPosition = document.querySelector('input[name="st-position"]:checked').value;
+        const toastCloseBtnElement = document.querySelector('input[name="st-close-btn"]:checked');
         var toastConfig = {
             type: toastType,
             position: toastPosition,
             background: getBackgroundForType(toastType),
-            content: toastContent,
-            closeBtn: true
+            content: toastContentElement.value,
+            closeBtn: toastCloseBtnElement ? true : false
         };
         const addedToastID = instanceA.addToast(toastConfig);
         console.log(instanceA.getAllToastIds());
 
-        document.getElementById('all-taost-ids').innerHTML = '[ ' +  instanceA.getAllToastIds() + ' ]';
-
-        document.getElementById('json-config').innerHTML = JSON.stringify(toastConfig, undefined, 4);
-        
-        console.log('addedToastID', addedToastID);
+        document.getElementById('st-current-toast-id').innerHTML = 'Current added toast id: ' + addedToastID;
+        document.getElementById('st-json-config').innerHTML = 'toastr.config = ' + JSON.stringify(Object.assign(toastConfig, {content: toastContentElement.innerHTML}), undefined, 4);
     }
 
     function removeToastById() {
-        const toRemoveToastId = document.querySelector('input[name="to-remove-toast-id"]').value;
-        instanceA.removeToastById(toRemoveToastId);
+        const toRemoveToastId = document.querySelector('input[name="st-to-remove-toast-id"]').value;
+        const currentToastId = instanceA.removeToastById(toRemoveToastId);
 
-        document.getElementById('all-taost-ids').innerHTML = '[ ' +  instanceA.getAllToastIds() + ' ]';
+        document.getElementById('st-current-toast-id').innerHTML = '';
+        document.getElementById('st-json-config').innerHTML = '';
     }
 </script>
 

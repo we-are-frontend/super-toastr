@@ -22,15 +22,41 @@ class SuperToastr {
     };
   }
 
-  removeToastById(id) {
-    const oldToast = document.getElementById(id + '');
-    oldToast.remove();
-    const r = this.toastIds.filter(item => {
-      return item != id;
-    })
-    this.toastIds = r;
+  removeToastById(toastIdToRemove) {
+    const oldToast = document.getElementById(toastIdToRemove + '');
+    if (oldToast) {
+      const currentToastIndex = this.toastIds.findIndex(element => {
+        return element === toastIdToRemove;
+      });
 
-    this.updateCounter();
+      if (currentToastIndex > 0) {
+        this.currentToastID = this.toastIds[currentToastIndex - 1];
+      } else if (this.toastIds.length > 1) {
+        this.currentToastID = this.toastIds[currentToastIndex + 1];
+      } else {
+        this.currentToastID = null;
+      }
+
+      // remove
+      oldToast.remove();
+      const r = this.toastIds.filter(item => {
+        return item != toastIdToRemove;
+      })
+      this.toastIds = r;
+
+      // show new if needed
+      if (this.currentToastID) {
+        const newNodeToastToRender = document.getElementById(
+          this.currentToastID + ""
+        );
+        newNodeToastToRender.style.zIndex = "102";
+        newNodeToastToRender.style.display = 'block';
+      }
+        
+      this.updateCounter();
+    }
+
+    return this.currentToastID;
   }
 
   addToast(config = {}) {
@@ -249,26 +275,6 @@ class SuperToastr {
     closeElement.addEventListener(
       "click",
       () => {
-        const currentToastIndex = this.toastIds.findIndex(element => {
-          return element === this.currentToastID;
-        });
-
-        if (currentToastIndex > 0) {
-          this.currentToastID = this.toastIds[currentToastIndex - 1];
-        } else if (this.toastIds.length > 1) {
-          this.currentToastID = this.toastIds[currentToastIndex + 1];
-        } else {
-          this.currentToastID = null;
-        }
-
-        if (this.currentToastID) {
-          const newNodeToastToRender = document.getElementById(
-            this.currentToastID + ""
-          );
-          newNodeToastToRender.style.zIndex = "102";
-          newNodeToastToRender.style.display = 'block';
-        }
-
         this.removeToastById(toast_id_);
       },
       false

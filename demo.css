@@ -7,6 +7,30 @@
     --border-grey:#e3e3e3;
 }
 
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.input-field {
+    margin-top: 0;
+    height: 36px;
+    flex: 1;
+}
+
+.remove-btn {
+    height: 40px;
+}
+
 #demo {
     display: flex;
     flex-direction: column;
