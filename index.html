@@ -142,10 +142,12 @@
 
     function removeToastById() {
         const toRemoveToastId = document.querySelector('input[name="st-to-remove-toast-id"]').value;
-        const currentToastId = instanceA.removeToastById(toRemoveToastId);
+        if (toRemoveToastId) {
+            const currentToastId = instanceA.removeToastById(toRemoveToastId);
 
-        document.getElementById('st-current-toast-id').innerHTML = '';
-        document.getElementById('st-json-config').innerHTML = '';
+            document.getElementById('st-current-toast-id').innerHTML = '';
+            document.getElementById('st-json-config').innerHTML = '';
+        }
     }
 
     function removeAllToasts() {
