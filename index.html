@@ -54,7 +54,6 @@
             <div class="col p-1">
                 <h3>All toast IDs</h3>
                 <div id="all-taost-ids">
-
                 </div>
 
                 <h3>Add toast</h3>
@@ -70,6 +69,13 @@
                 </button>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col p-1" style="border: 1px solid #d1d1d1">
+                <pre id="json-config">
+                </pre>
+            </div>
+        </div>
     </section>
 
     <div id="toasts-container" style="z-index: 999999; pointer-events: none; display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%;">
@@ -77,11 +83,8 @@
 </body>
 
 <script>
+    
     var instanceA = SuperToastrLib.createToaster('instanceA');
-
-    function printIdsToDom(ids) {
-        document.getElementById('all-taost-ids').innerHTML = '[ ' +  ids + ' ]';;
-    }
 
     function getBackgroundForType(type) {
         if (type === 'WAR') {
@@ -112,12 +115,16 @@
             type: toastType,
             position: toastPosition,
             background: getBackgroundForType(toastType),
-            content: prettyDate2(new Date()) + ' ' + toastContent,
+            content: toastContent,
             closeBtn: true
         };
         const addedToastID = instanceA.addToast(toastConfig);
         console.log(instanceA.getAllToastIds());
-        printIdsToDom(instanceA.getAllToastIds());
+
+        document.getElementById('all-taost-ids').innerHTML = '[ ' +  instanceA.getAllToastIds() + ' ]';
+
+        document.getElementById('json-config').innerHTML = JSON.stringify(toastConfig, undefined, 4);
+        
         console.log('addedToastID', addedToastID);
     }
 
