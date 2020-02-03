@@ -131,7 +131,8 @@
     function removeToastById() {
         const toRemoveToastId = document.querySelector('input[name="to-remove-toast-id"]').value;
         instanceA.removeToastById(toRemoveToastId);
-        printIdsToDom(instanceA.getAllToastIds());
+
+        document.getElementById('all-taost-ids').innerHTML = '[ ' +  instanceA.getAllToastIds() + ' ]';
     }
 </script>
 
