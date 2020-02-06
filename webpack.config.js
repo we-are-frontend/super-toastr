@@ -5,7 +5,7 @@ var path = require('path');
      output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'super-toastr.bundle.js',
-        libraryTarget: 'var',
+        libraryTarget: 'umd',
         library: 'SuperToastrLib'
      },
      module: {
