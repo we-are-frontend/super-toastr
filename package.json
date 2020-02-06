@@ -1,7 +1,7 @@
 {
   "name": "super-toastr",
   "version": "0.0.1",
-  "description": "",
+  "description": "toastr solution with the particularity of stacking at one spot with the possibility of navigating the toasts.",
   "main": "index.js",
   "scripts": {
     "webpack": "webpack --mode development",
