@@ -1,1 +1,1 @@
-import './build/super-toastr.bundle';
+export * from './build/super-toastr.bundle';
