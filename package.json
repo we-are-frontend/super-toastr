@@ -1,6 +1,6 @@
 {
   "name": "super-toastr",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "toastr solution with the particularity of stacking at one spot with the possibility of navigating the toasts.",
   "main": "index.js",
   "scripts": {
@@ -17,9 +17,6 @@
     "url": "https://github.com/we-are-frontend/super-toastr/issues"
   },
   "homepage": "https://github.com/we-are-frontend/super-toastr#readme",
-  "dependencies": {
-    "@babel/polyfill": "^7.8.3"
-  },
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",

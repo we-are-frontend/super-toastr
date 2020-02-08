@@ -1,10 +1,13 @@
 var path = require('path');
  var webpack = require('webpack');
  module.exports = {
-     entry: ['@babel/polyfill', './super-toastr.js'],
+     entry: {
+         vendor: '@babel/polyfill', 
+         'super-toastr': './super-toastr.js'
+     },
      output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'super-toastr.bundle.js',
+        filename: '[name].bundle.js',
         libraryTarget: 'umd',
         library: 'SuperToastrLib'
      },
