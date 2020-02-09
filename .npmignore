@@ -1,0 +1,15 @@
+# IDE/GIT/BUILD
+.babelrc
+.editorconfig
+.gitignore
+webpack.config.js
+yarn.lock
+
+# CODE/DEMO
+demo.css
+index.html
+super-toastr.js
+
+#DIST
+dist/vendor.bundle.js
+dist/vendor.bundle.js.map
