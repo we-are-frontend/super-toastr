@@ -151,6 +151,7 @@ class SuperToastr {
       toastElement.style.left = "0";
       translate = "translate(0, 100px)";
     } else if (position === this.positions.top_center) {
+      console.log('top_center');
       toastElement.style.top = "0";
       toastElement.style.left = "0";
       toastElement.style.right = "0";

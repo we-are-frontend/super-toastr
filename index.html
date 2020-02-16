@@ -42,11 +42,11 @@
                     <input type="radio" name="st-position" value="bottom_left"> Bottom Left <br>  
                     <input type="radio" name="st-position" value="top_left"> Top Left <br>  
                     <!--
-                    <input type="radio" name="toast-position" value="top_full_width "> Top Full Width <br> 
-                    <input type="radio" name="toast-position" value="bottom_full_width"> Bottom Full Width <br> 
+                    <input type="radio" name="st-position" value="top_full_width "> Top Full Width <br> 
+                    <input type="radio" name="st-position" value="bottom_full_width"> Bottom Full Width <br> 
                     -->
-                    <input type="radio" name="toast-position" value="top_center"> Top Center <br> 
-                    <input type="radio" name="toast-position" value="bottom_center"> Bottom Center <br> 
+                    <input type="radio" name="st-position" value="top_center"> Top Center <br> 
+                    <input type="radio" name="st-position" value="bottom_center"> Bottom Center <br> 
                 </div>
             </div>
         </div>
@@ -125,6 +125,7 @@
         const toastContentElement = document.querySelector('textarea[name="st-content"]');
         const toastType = document.querySelector('input[name="st-type"]:checked').value;
         const toastPosition = document.querySelector('input[name="st-position"]:checked').value;
+        console.log(toastPosition);
         const toastCloseBtnElement = document.querySelector('input[name="st-close-btn"]:checked');
         var toastConfig = {
             type: toastType,
