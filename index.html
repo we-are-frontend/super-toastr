@@ -93,12 +93,12 @@
         </div>
     </section>
     
-    <div id="toasts-container" style="z-index: 999999; pointer-events: none; display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%;">
+    <div id="toasts-container-1" style="z-index: 999999; pointer-events: none; display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%;">
     </div>
 </body>
 
 <script>
-    var instanceA = SuperToastrLib.createToaster('instanceA');
+    var instanceA = SuperToastrLib.createToaster('toasts-container-1');
 
     function getBackgroundForType(type) {
         if (type === 'WAR') {

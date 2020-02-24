@@ -97,7 +97,7 @@ class SuperToastr {
       this.addCloseBtn(toastElement, __toast_id);
     }
 
-    document.getElementById('toasts-container').appendChild(toastElement);
+    document.getElementById(this.instanceId).appendChild(toastElement);
 
     this.updateCounter();
 
