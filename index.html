@@ -56,7 +56,7 @@
 
     <br />
 
-    <section id="demo" class="well">
+    <section id="demo" class="col-12 well">
         <div class="row">
                 <!--
                 <h3>All toast IDs</h3>
@@ -69,10 +69,17 @@
                 </button>
             </div>
 
-            <div class="col-3 col-lg-3 pb-3">
+            <div class="col-12 col-lg-3 pb-3">
                 <div class="flex-container">
-                    <input type="text" name='st-to-remove-toast-id' class="input-field" placeholder="Enter toast id to remove">
+                    <input type="text" name='st-to-remove-toast-id' class="input-remove input-field" placeholder="Enter toast id">
                     <button type="submit" class="btn remove-btn" onClick="removeToastById()">remove</button>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-3 pb-3">
+                <div class="flex-container">
+                    <input type="text" name='st-to-remove-toast-type' class="input-remove input-field" placeholder="Enter toast type">
+                    <button type="submit" class="btn remove-btn" onClick="removeToastByType()">remove</button>
                 </div>
             </div>
 
@@ -146,6 +153,16 @@
             const currentToastId = instanceA.removeToastById(toRemoveToastId);
 
             document.getElementById('st-current-toast-id').innerHTML = '';
+            document.getElementById('st-json-config').innerHTML = '';
+        }
+    }
+
+    function removeToastByType() {
+        const toRemoveToastType = document.querySelector('input[name="st-to-remove-toast-type"]').value;
+        if (toRemoveToastType) {
+            const currentToastId = instanceA.removeAllToastTypes([toRemoveToastType]);
+
+            document.getElementById('st-current-toast-type').innerHTML = '';
             document.getElementById('st-json-config').innerHTML = '';
         }
     }

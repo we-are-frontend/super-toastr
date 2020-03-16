@@ -70,6 +70,7 @@ Using the instance created in step 2, you can check the API section to add/remvo
 | addToast          | toast id                      | Toast config             | add a new toast notification                                |                                                                                                                     |
 | removeToastById   | new toast id diplayed or null                         | Toast id              | remove a toast notification                                                                                                             |
 | removeAllToasts   |                          |               | Remove all toast notifications                                                                                                    |
+| removeAllToastTypes   |                          |     array of types          | Remove all toast notifications by types                                                                                                |
 | nextToast         |                                |                   | navigate to the next toast     
 | previousToast     |                                |                   | navigate to the previous toast   
 

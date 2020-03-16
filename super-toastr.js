@@ -84,6 +84,16 @@ class SuperToastr {
     return this.currentToastID;
   }
 
+  removeAllToastTypes(types) {
+    this.toastIds.forEach(toastId => {
+      types.forEach(type => {
+        if (toastId.includes(type)) {
+          this.removeToastById(toastId);
+        }
+      });
+    });
+  }
+
   addToast(config = {}) {
     const __toast_id = getToastId(this.instanceId, config.type, this.counter);
 

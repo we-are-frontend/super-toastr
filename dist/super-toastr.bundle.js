@@ -207,6 +207,19 @@ function () {
       return this.currentToastID;
     }
   }, {
+    key: "removeAllToastTypes",
+    value: function removeAllToastTypes(types) {
+      var _this = this;
+
+      this.toastIds.forEach(function (toastId) {
+        types.forEach(function (type) {
+          if (toastId.includes(type)) {
+            _this.removeToastById(toastId);
+          }
+        });
+      });
+    }
+  }, {
     key: "addToast",
     value: function addToast() {
       var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -228,10 +241,10 @@ function () {
   }, {
     key: "nextToast",
     value: function nextToast() {
-      var _this = this;
+      var _this2 = this;
 
       var currentToastIndex = this.toastIds.findIndex(function (element) {
-        return element === _this.currentToastID;
+        return element === _this2.currentToastID;
       });
 
       if (currentToastIndex + 1 < this.toastIds.length) {
@@ -246,10 +259,10 @@ function () {
   }, {
     key: "previousToast",
     value: function previousToast() {
-      var _this2 = this;
+      var _this3 = this;
 
       var currentToastIndex = this.toastIds.findIndex(function (element) {
-        return element === _this2.currentToastID;
+        return element === _this3.currentToastID;
       });
 
       if (currentToastIndex - 1 > -1) {
@@ -264,16 +277,16 @@ function () {
   }, {
     key: "updateCounter",
     value: function updateCounter() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.toastIds.forEach(function (toastId) {
         var toastIndexElement = document.getElementById(toastId + '_current-index');
 
-        var currentToastIndex = _this3.toastIds.findIndex(function (element) {
+        var currentToastIndex = _this4.toastIds.findIndex(function (element) {
           return element === toastId;
         });
 
-        toastIndexElement.textContent = currentToastIndex + 1 + ' / ' + _this3.toastIds.length;
+        toastIndexElement.textContent = currentToastIndex + 1 + ' / ' + _this4.toastIds.length;
       });
     }
   }, {
@@ -360,7 +373,7 @@ function () {
   }, {
     key: "addNextPrevious",
     value: function addNextPrevious(toastElement) {
-      var _this4 = this;
+      var _this5 = this;
 
       var footerElement = document.createElement('div');
       footerElement.style.display = 'flex';
@@ -375,7 +388,7 @@ function () {
       previousElement.style.paddingRight = '10px';
       previousElement.style.cursor = 'pointer';
       previousElement.addEventListener('click', function () {
-        _this4.previousToast();
+        _this5.previousToast();
       }, false);
       footerElement.appendChild(previousElement); // COUNTER
 
@@ -392,7 +405,7 @@ function () {
       nextElement.style.paddingLeft = '10px';
       nextElement.style.cursor = 'pointer';
       nextElement.addEventListener('click', function () {
-        _this4.nextToast();
+        _this5.nextToast();
       }, false);
       footerElement.appendChild(nextElement);
       toastElement.appendChild(footerElement);
@@ -400,7 +413,7 @@ function () {
   }, {
     key: "addCloseBtn",
     value: function addCloseBtn(toastElement, toast_id_) {
-      var _this5 = this;
+      var _this6 = this;
 
       var closeElement = document.createElement('div');
       closeElement.textContent = 'X';
@@ -414,7 +427,7 @@ function () {
       closeElement.style.right = '0';
       closeElement.style.padding = '3px';
       closeElement.addEventListener('click', function () {
-        _this5.removeToastById(toast_id_);
+        _this6.removeToastById(toast_id_);
       }, false);
       toastElement.appendChild(closeElement);
     }
