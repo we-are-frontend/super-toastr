@@ -82,11 +82,7 @@ You can add a content as HTML inside the config
 
 # Contributing
 To do a fix or add a feature:
-1. You can update the file `super-toastr.js` 
-2. ``` yarn run webpack ```
-3. ``` yarn start ```
-4. localhost:8080 in your browser to test your changes
-
-Note: no watcher for changes was added for now. You must rerun webpack each time.
-
+1. ``` yarn start ```
+2. 'http://localhost:8080' in your browser to check the demo live
+3. You can update the file `./super-toastr.js` and  you 'll see your change by refreshing your browser
 

@@ -222,6 +222,8 @@ function () {
   }, {
     key: "addToast",
     value: function addToast() {
+      var _this2 = this;
+
       var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
       var __toast_id = getToastId(this.instanceId, config.type, this.counter);
@@ -236,15 +238,24 @@ function () {
 
       document.getElementById(this.instanceId).appendChild(toastElement);
       this.updateCounter();
+
+      if (config.timeout) {
+        var toastTimeout = setTimeout(function () {
+          _this2.removeToastById(__toast_id);
+
+          clearTimeout(toastTimeout);
+        }, config.timeout);
+      }
+
       return __toast_id;
     }
   }, {
     key: "nextToast",
     value: function nextToast() {
-      var _this2 = this;
+      var _this3 = this;
 
       var currentToastIndex = this.toastIds.findIndex(function (element) {
-        return element === _this2.currentToastID;
+        return element === _this3.currentToastID;
       });
 
       if (currentToastIndex + 1 < this.toastIds.length) {
@@ -259,10 +270,10 @@ function () {
   }, {
     key: "previousToast",
     value: function previousToast() {
-      var _this3 = this;
+      var _this4 = this;
 
       var currentToastIndex = this.toastIds.findIndex(function (element) {
-        return element === _this3.currentToastID;
+        return element === _this4.currentToastID;
       });
 
       if (currentToastIndex - 1 > -1) {
@@ -277,16 +288,16 @@ function () {
   }, {
     key: "updateCounter",
     value: function updateCounter() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.toastIds.forEach(function (toastId) {
         var toastIndexElement = document.getElementById(toastId + '_current-index');
 
-        var currentToastIndex = _this4.toastIds.findIndex(function (element) {
+        var currentToastIndex = _this5.toastIds.findIndex(function (element) {
           return element === toastId;
         });
 
-        toastIndexElement.textContent = currentToastIndex + 1 + ' / ' + _this4.toastIds.length;
+        toastIndexElement.textContent = currentToastIndex + 1 + ' / ' + _this5.toastIds.length;
       });
     }
   }, {
@@ -373,7 +384,7 @@ function () {
   }, {
     key: "addNextPrevious",
     value: function addNextPrevious(toastElement) {
-      var _this5 = this;
+      var _this6 = this;
 
       var footerElement = document.createElement('div');
       footerElement.style.display = 'flex';
@@ -388,7 +399,7 @@ function () {
       previousElement.style.paddingRight = '10px';
       previousElement.style.cursor = 'pointer';
       previousElement.addEventListener('click', function () {
-        _this5.previousToast();
+        _this6.previousToast();
       }, false);
       footerElement.appendChild(previousElement); // COUNTER
 
@@ -405,7 +416,7 @@ function () {
       nextElement.style.paddingLeft = '10px';
       nextElement.style.cursor = 'pointer';
       nextElement.addEventListener('click', function () {
-        _this5.nextToast();
+        _this6.nextToast();
       }, false);
       footerElement.appendChild(nextElement);
       toastElement.appendChild(footerElement);
@@ -413,7 +424,7 @@ function () {
   }, {
     key: "addCloseBtn",
     value: function addCloseBtn(toastElement, toast_id_) {
-      var _this6 = this;
+      var _this7 = this;
 
       var closeElement = document.createElement('div');
       closeElement.textContent = 'X';
@@ -427,7 +438,7 @@ function () {
       closeElement.style.right = '0';
       closeElement.style.padding = '3px';
       closeElement.addEventListener('click', function () {
-        _this6.removeToastById(toast_id_);
+        _this7.removeToastById(toast_id_);
       }, false);
       toastElement.appendChild(closeElement);
     }

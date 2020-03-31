@@ -111,6 +111,13 @@ class SuperToastr {
 
     this.updateCounter();
 
+    if (config.timeout) {
+      const toastTimeout = setTimeout(() => {
+        this.removeToastById(__toast_id);
+        clearTimeout(toastTimeout);
+      }, config.timeout);
+    }
+
     return __toast_id;
   }
 

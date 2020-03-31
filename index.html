@@ -24,6 +24,9 @@
                 <div class="form-group">
                     <input type="checkbox" id="st-close-btn" name="st-close-btn" checked /> Close button
                 </div>
+                <div class="form-group">
+                    <input type="text" id="st-time-out" name="st-time-out" checked placeholder="Time out (ms)"/> 
+                </div>
             </div>
             <div class="col-12 col-lg-3">
                 <div class="form-group st-types">
@@ -132,14 +135,15 @@
         const toastContentElement = document.querySelector('textarea[name="st-content"]');
         const toastType = document.querySelector('input[name="st-type"]:checked').value;
         const toastPosition = document.querySelector('input[name="st-position"]:checked').value;
-        console.log(toastPosition);
         const toastCloseBtnElement = document.querySelector('input[name="st-close-btn"]:checked');
+        const toastTimeout = document.querySelector('input[name="st-time-out"]');
         var toastConfig = {
             type: toastType,
             position: toastPosition,
             background: getBackgroundForType(toastType),
             content: toastContentElement.value,
-            closeBtn: toastCloseBtnElement ? true : false
+            closeBtn: toastCloseBtnElement ? true : false,
+            timeout: toastTimeout.value || null
         };
         const addedToastID = instanceA.addToast(toastConfig);
 
