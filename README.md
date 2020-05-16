@@ -5,30 +5,30 @@
 The difference between this library and others is that all toast notifications 
 stack at the same spot in the screen and you can then navigate all toasts that are stacked.
 
-# Browser support
+## Browser support
 It's fully tested with chrome. Minimum tests was done for now in IE11, EDGE it should be working fine.
 More effort will be done in the futur to add automated tests and test more with all browsers.
 
-# Demo
+## Demo
 - Demo https://we-are-frontend.github.io/super-toastr/
 
-# Install
+## Install
 
-## CDN
+### CDN
 /* temporary - none minified */
 https://github.com/we-are-frontend/super-toastr/blob/master/dist/super-toastr.bundle.js
 
-## npm
+### npm
 ```
 npm i --save super-toastr
 ```
 
-## yarn
+### yarn
 ```
 yarn add super-toastr
 ```
 
-# Usage Overview
+## Usage Overview
 - step 1
 
 add a div with this html and style at the end of your body tag.
@@ -60,9 +60,9 @@ IMPORTANT: the param of createToaster call `toasts-container-1` must match the i
 
 Using the instance created in step 2, you can check the API section to add/remvoe toasts etc...
 
-# API
+## API
 
-## public methods
+### public methods
 
 | Method            | Return                         | Params           | Description                                                                                                                                     |
 | ----------------- | ------------------------------ | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -73,13 +73,13 @@ Using the instance created in step 2, you can check the API section to add/remvo
 | nextToast         |                                |                   | navigate to the next toast     
 | previousToast     |                                |                   | navigate to the previous toast   
 
-# Toast config 
+## Toast config 
 Please refer to demo bottom section to get the config for your toast
 
-# Customize toast UI
+## Customize toast UI
 You can add a content as HTML inside the config
 
-# Contributing
+## Contributing
 To do a fix or add a feature:
 1. ``` yarn start ```
 2. 'http://localhost:8080' in your browser to check the demo live
