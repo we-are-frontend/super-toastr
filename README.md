@@ -84,5 +84,6 @@ You can add a content as HTML inside the config
 To do a fix or add a feature:
 1. ``` yarn start ```
 2. 'http://localhost:8080' in your browser to check the demo live
-3. You can update the file `./super-toastr.js` and  you 'll see your change by refreshing your browser
+3. You can update the file `./super-toastr.js` and  you 'll see your change 
+(live reloading is available - should refresh auto. your browser when a change is done in step 3)
 

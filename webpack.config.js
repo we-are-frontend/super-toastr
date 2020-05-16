@@ -13,20 +13,25 @@ var path = require('path');
      },
      module: {
         rules: [
-             {
+            {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: {
                     loader: "babel-loader",
                     options: {
-                      presets: ["@babel/preset-env"]  //Preset used for env setup
+                        presets: ["@babel/preset-env"]  //Preset used for env setup
                     }
                 }
-             }
+            }
          ]
      },
      devServer: {
         writeToDisk: true,
+
+        // https://medium.com/code-oil/burning-questions-with-answers-to-why-webpack-dev-server-live-reload-does-not-work-6d6390277920
+        // watch for index.html and demo.css changes
+        contentBase: path.resolve(__dirname, "./"),
+        watchContentBase: true
      },
      stats: {
          colors: true
