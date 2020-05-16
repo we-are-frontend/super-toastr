@@ -1,10 +1,9 @@
+[![npm version](https://badge.fury.io/js/super-toastr.svg)](https://www.npmjs.com/package/super-toastr)
+
 # super-toastr
 **super-toastr** is a Javascript library for non-blocking notifications.
 The difference between this library and others is that all toast notifications 
 stack at the same spot in the screen and you can then navigate all toasts that are stacked.
-
-# Current Version
-0.0.11
 
 # Browser support
 It's fully tested with chrome. Minimum tests was done for now in IE11, EDGE it should be working fine.
