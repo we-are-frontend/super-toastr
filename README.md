@@ -74,10 +74,10 @@ Using the instance created in step 2, you can check the API section to add/remvo
 | nextToast         |                                |                   | navigate to the next toast     
 | previousToast     |                                |                   | navigate to the previous toast   
 
-## toast config 
+# Toast config 
 Please refer to demo bottom section to get the config for your toast
 
-## customize toast UI
+# Customize toast UI
 You can add a content as HTML inside the config
 
 # Contributing
@@ -85,5 +85,6 @@ To do a fix or add a feature:
 1. ``` yarn start ```
 2. 'http://localhost:8080' in your browser to check the demo live
 3. You can update the file `./super-toastr.js` and  you 'll see your change 
+
 (live reloading is available - should refresh auto. your browser when a change is done in step 3)
 
